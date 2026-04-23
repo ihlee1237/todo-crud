@@ -53,7 +53,7 @@ function App() {
   });
 
   // TODO: 남은 할 일 개수
-  const remainingCount = 0;
+  const remainingCount = todos.filter(todo => !todo.completed).length;
 
   return (
     <div className="app">
