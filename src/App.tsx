@@ -24,6 +24,10 @@ function App() {
     setInputValue('');
   }
 
+  function deleteCompleted() {
+    setTodos(todos.filter(todo => !todo.completed));
+  }
+
   // TODO: 할 일 추가
   const handleAdd = () => {
     if (inputValue.trim() !== '') {
@@ -96,6 +100,12 @@ function App() {
 
       {/* TODO: 카운터 */}
       <div className="counter">{remainingCount}개 남음</div>
+
+      <div className="delete-completed">
+        <button onClick={deleteCompleted}>
+          완료된 항목 삭제
+        </button>
+      </div>
     </div>
   );
 }
