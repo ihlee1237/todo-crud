@@ -1,15 +1,34 @@
 import { useState } from 'react';
-import { initialTodos, Todo, FilterType } from './data/todos';
 import './App.css';
+import { FilterType, generateId, initialTodos, Todo } from './data/todos';
 
 function App() {
   const [todos, setTodos] = useState<Todo[]>(initialTodos);
   const [filter, setFilter] = useState<FilterType>('all');
   const [inputValue, setInputValue] = useState('');
 
+  function makeTodoItem(text: string): Todo {
+    return {
+      id: generateId(),
+      text,
+      completed: false,
+      createdAt: new Date()
+    }
+  }
+
+  function clearInput() {
+    setInputValue('');
+  }
+
   // TODO: 할 일 추가
   const handleAdd = () => {
-    console.log('추가:', inputValue);
+    if (inputValue.trim() !== '') {
+      setTodos([
+        ...todos,
+        makeTodoItem(inputValue.trim()),
+      ]);
+      clearInput();
+    }
   };
 
   // TODO: 완료 토글
@@ -40,6 +59,7 @@ function App() {
           onChange={(e) => setInputValue(e.target.value)}
           placeholder="할 일을 입력하세요"
           className="todo-input"
+          onKeyUp={(e) => e.key === 'Enter' && handleAdd()}
         />
         <button onClick={handleAdd} className="add-button">
           추가
