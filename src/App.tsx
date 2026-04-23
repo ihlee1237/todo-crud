@@ -8,7 +8,7 @@ import { Storage } from './utils';
 
 function App() {
   const [todos, setTodos] = useState<Todo[]>(Storage.load());
-  const [filter, setFilter] = useState<FilterType>('all');
+  const [filter, setFilter] = useState<FilterType>(FilterType.ALL);
   const [inputValue, setInputValue] = useState('');
 
   function makeTodoItem(text: string): Todo {
@@ -50,8 +50,8 @@ function App() {
   // TODO: 필터링된 목록
   const filteredTodos = useMemo(() => {
     return todos.filter(todo => {
-      if (filter === 'active') return !todo.completed;
-      if (filter === 'completed') return todo.completed;
+      if (filter === FilterType.ACTIVE) return !todo.completed;
+      if (filter === FilterType.COMPLETE) return todo.completed;
       return true;
     });
   }, [todos, filter]);
