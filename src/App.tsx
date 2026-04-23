@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import './App.css';
-import FilterItem from './components/filterItem';
-import TodoItem from './components/todoItem';
+import { EmptyMessageItem } from './components/EmptyMessageItem';
+import FilterItem from './components/FilterItem';
+import TodoItem from './components/TodoItem';
 import { FilterType, generateId, initialTodos, Todo } from './data/todos';
 
 function App() {
@@ -83,6 +84,8 @@ function App() {
           <TodoItem key={todo.id} todo={todo} handleToggle={handleToggle} handleDelete={handleDelete} />
         ))}
       </ul>
+
+      {filteredTodos.length === 0 && <EmptyMessageItem filter={filter} />}
 
       {/* TODO: 카운터 */}
       <div className="counter">{remainingCount}개 남음</div>
