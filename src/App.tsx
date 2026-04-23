@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.css';
+import FilterItem from './components/filterItem';
 import TodoItem from './components/todoItem';
 import { FilterType, generateId, initialTodos, Todo } from './data/todos';
 
@@ -45,7 +46,11 @@ function App() {
   };
 
   // TODO: 필터링된 목록
-  const filteredTodos = todos;
+  const filteredTodos = todos.filter(todo => {
+    if (filter === 'active') return !todo.completed;
+    if (filter === 'completed') return todo.completed;
+    return true;
+  });
 
   // TODO: 남은 할 일 개수
   const remainingCount = 0;
@@ -70,11 +75,7 @@ function App() {
       </div>
 
       {/* TODO: 필터 버튼 */}
-      <div className="filter-container">
-        <button className={filter === 'all' ? 'active' : ''}>전체</button>
-        <button className={filter === 'active' ? 'active' : ''}>진행중</button>
-        <button className={filter === 'completed' ? 'active' : ''}>완료</button>
-      </div>
+      <FilterItem filter={filter} setFilter={setFilter} />
 
       {/* TODO: 할 일 목록 */}
       <ul className="todo-list">
