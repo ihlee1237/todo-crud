@@ -115,6 +115,14 @@ h1 {
 .todo-checkbox { }
 */
 
+.todo-item .delete-button {
+  opacity: 0;
+}
+
+.todo-item:hover .delete-button {
+  opacity: 1;
+}
+
 /* TODO: 삭제 버튼 스타일 */
 .delete-button {
   color: red;
