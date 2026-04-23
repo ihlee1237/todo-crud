@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import './App.css';
 import { EmptyMessageItem } from './components/EmptyMessageItem';
 import FilterItem from './components/FilterItem';
@@ -47,11 +47,13 @@ function App() {
   };
 
   // TODO: 필터링된 목록
-  const filteredTodos = todos.filter(todo => {
-    if (filter === 'active') return !todo.completed;
-    if (filter === 'completed') return todo.completed;
-    return true;
-  });
+  const filteredTodos = useMemo(() => {
+    return todos.filter(todo => {
+      if (filter === 'active') return !todo.completed;
+      if (filter === 'completed') return todo.completed;
+      return true;
+    });
+  }, [todos, filter]);
 
   // TODO: 남은 할 일 개수
   const remainingCount = todos.filter(todo => !todo.completed).length;
