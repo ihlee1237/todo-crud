@@ -41,7 +41,7 @@ function App() {
 
   // TODO: 삭제
   const handleDelete = (id: string) => {
-    console.log('삭제:', id);
+    setTodos(todos.filter(todo => todo.id !== id));
   };
 
   // TODO: 필터링된 목록
@@ -79,7 +79,7 @@ function App() {
       {/* TODO: 할 일 목록 */}
       <ul className="todo-list">
         {filteredTodos.map((todo) => (
-          <TodoItem key={todo.id} todo={todo} handleToggle={handleToggle} />
+          <TodoItem key={todo.id} todo={todo} handleToggle={handleToggle} handleDelete={handleDelete} />
         ))}
       </ul>
 

@@ -87,6 +87,7 @@ h1 {
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 16px;
   background: #fff;
   border-radius: 8px;
@@ -108,9 +109,18 @@ h1 {
 */
 
 /* TODO: 삭제 버튼 스타일 */
-/*
-.delete-button { }
-*/
+.delete-button {
+  color: red;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 4px 8px;
+  background-color: transparent;
+}
+
+.delete-button:hover {
+  background-color: lightgray;
+}
 
 .counter {
   text-align: center;
