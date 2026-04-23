@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.css';
+import TodoItem from './components/todoItem';
 import { FilterType, generateId, initialTodos, Todo } from './data/todos';
 
 function App() {
@@ -33,7 +34,9 @@ function App() {
 
   // TODO: 완료 토글
   const handleToggle = (id: string) => {
-    console.log('토글:', id);
+    setTodos(todos.map(todo =>
+      todo.id === id ? { ...todo, completed: !todo.completed } : todo
+    ));
   };
 
   // TODO: 삭제
@@ -76,9 +79,7 @@ function App() {
       {/* TODO: 할 일 목록 */}
       <ul className="todo-list">
         {filteredTodos.map((todo) => (
-          <li key={todo.id} className="todo-item">
-            <span>{todo.text}</span>
-          </li>
+          <TodoItem key={todo.id} todo={todo} handleToggle={handleToggle} />
         ))}
       </ul>
 

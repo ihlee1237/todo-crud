@@ -84,6 +84,7 @@ h1 {
 }
 
 .todo-item {
+  cursor: pointer;
   display: flex;
   align-items: center;
   padding: 16px;
@@ -95,9 +96,11 @@ h1 {
 }
 
 /* TODO: 완료된 항목 스타일 */
-/*
-.todo-item.completed span { }
-*/
+.todo-item.completed span {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
 
 /* TODO: 체크박스 스타일 */
 /*
