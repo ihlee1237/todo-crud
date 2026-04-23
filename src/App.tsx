@@ -1,12 +1,13 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import './App.css';
 import { EmptyMessageItem } from './components/EmptyMessageItem';
 import FilterItem from './components/FilterItem';
 import TodoItem from './components/TodoItem';
-import { FilterType, generateId, initialTodos, Todo } from './data/todos';
+import { FilterType, generateId, Todo } from './data/todos';
+import { Storage } from './utils';
 
 function App() {
-  const [todos, setTodos] = useState<Todo[]>(initialTodos);
+  const [todos, setTodos] = useState<Todo[]>(Storage.load());
   const [filter, setFilter] = useState<FilterType>('all');
   const [inputValue, setInputValue] = useState('');
 
@@ -54,6 +55,10 @@ function App() {
       return true;
     });
   }, [todos, filter]);
+
+  useEffect(() => {
+    Storage.save(todos);
+  }, [todos]);
 
   // TODO: 남은 할 일 개수
   const remainingCount = todos.filter(todo => !todo.completed).length;
