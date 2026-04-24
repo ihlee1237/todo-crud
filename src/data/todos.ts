@@ -5,7 +5,11 @@ export interface Todo {
   createdAt: Date;
 }
 
-export type FilterType = 'all' | 'active' | 'completed';
+export enum FilterType {
+  ALL = 'all',
+  ACTIVE = 'active',
+  COMPLETE = 'completed',
+}
 
 export const initialTodos: Todo[] = [
   {

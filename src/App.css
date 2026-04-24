@@ -84,8 +84,10 @@ h1 {
 }
 
 .todo-item {
+  cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 16px;
   background: #fff;
   border-radius: 8px;
@@ -95,19 +97,58 @@ h1 {
 }
 
 /* TODO: 완료된 항목 스타일 */
-/*
-.todo-item.completed span { }
-*/
+.todo-item.completed span {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.empty-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: gray;
+}
+
 
 /* TODO: 체크박스 스타일 */
 /*
 .todo-checkbox { }
 */
 
+.todo-item .delete-button {
+  opacity: 0;
+}
+
+.todo-item:hover .delete-button {
+  opacity: 1;
+}
+
 /* TODO: 삭제 버튼 스타일 */
-/*
-.delete-button { }
-*/
+.delete-button {
+  color: red;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 4px 8px;
+  background-color: transparent;
+}
+
+.delete-button:hover {
+  background-color: lightgray;
+}
+
+.delete-completed {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.delete-completed > button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+}
 
 .counter {
   text-align: center;
