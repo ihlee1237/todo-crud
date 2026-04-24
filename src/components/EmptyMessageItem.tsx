@@ -4,10 +4,12 @@ interface EmptyMessageItemProps {
   filter: FilterType
 }
 
-export function EmptyMessageItem({ filter }: EmptyMessageItemProps) {
-  let message = "할 일이 없습니다.";
-  if (filter === FilterType.ACTIVE) message = "진행 중인 할 일이 없습니다.";
-  else if (filter === FilterType.COMPLETE) message = "완료된 항목이 없습니다.";
+function makeMessage(filter: FilterType) {
+  if (filter === FilterType.ACTIVE) return "진행 중인 할 일이 없습니다.";
+  if (filter === FilterType.COMPLETE) return "완료된 항목이 없습니다.";
+  return "할 일이 없습니다.";
+}
 
-  return <div className="empty-message">{message}</div>
+export function EmptyMessageItem({ filter }: EmptyMessageItemProps) {
+  return <div className="empty-message">{makeMessage(filter)}</div>
 }

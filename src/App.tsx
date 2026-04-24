@@ -7,7 +7,7 @@ import { FilterType, generateId, Todo } from './data/todos';
 import { Storage } from './utils';
 
 function App() {
-  const [todos, setTodos] = useState<Todo[]>(Storage.load());
+  const [todos, setTodos] = useState<Todo[]>(() => Storage.load());
   const [filter, setFilter] = useState<FilterType>(FilterType.ALL);
   const [inputValue, setInputValue] = useState('');
 
